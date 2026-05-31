@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Portfolio — Your Name</title>
+<title>Amari Zakaria — Fullstack Developer</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
 <style>
   :root {
@@ -25,8 +25,7 @@
     min-height: 100vh;
     overflow-x: hidden;
   }
-
-  /* NAV */
+ 
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
@@ -50,8 +49,7 @@
     transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--text); }
-
-  /* HERO */
+ 
   .hero {
     min-height: 100vh;
     display: flex; flex-direction: column; justify-content: center;
@@ -92,12 +90,10 @@
     color: var(--muted);
     font-size: 0.95rem;
     line-height: 1.8;
-    max-width: 500px;
+    max-width: 520px;
     margin-bottom: 2.5rem;
   }
-  .hero-cta {
-    display: flex; gap: 1rem; flex-wrap: wrap;
-  }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
   .btn {
     display: inline-block;
     padding: 0.75rem 1.75rem;
@@ -108,17 +104,9 @@
     transition: all 0.2s;
     cursor: pointer;
   }
-  .btn-primary {
-    background: var(--accent);
-    color: #fff;
-    border: 1px solid var(--accent);
-  }
+  .btn-primary { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
   .btn-primary:hover { background: #6a5de8; border-color: #6a5de8; }
-  .btn-outline {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border);
-  }
+  .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
   .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
   .hero-scroll {
     position: absolute; bottom: 2.5rem; left: 4rem;
@@ -126,13 +114,8 @@
     text-transform: uppercase; color: var(--muted);
     display: flex; align-items: center; gap: 0.75rem;
   }
-  .hero-scroll::before {
-    content: ''; display: block;
-    width: 40px; height: 1px;
-    background: var(--muted);
-  }
-
-  /* SECTIONS */
+  .hero-scroll::before { content: ''; display: block; width: 40px; height: 1px; background: var(--muted); }
+ 
   section { padding: 6rem 4rem; }
   .section-label {
     font-size: 0.7rem; letter-spacing: 0.18em;
@@ -146,149 +129,64 @@
     letter-spacing: -0.03em;
     margin-bottom: 3rem;
   }
-
-  /* ABOUT */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-  .about-text p {
-    color: var(--muted);
-    line-height: 1.9;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-  }
-  .skills-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
-  }
-  .skill-item {
-    display: flex; align-items: center; gap: 0.6rem;
-    font-size: 0.8rem; color: var(--muted);
-  }
-  .skill-item::before {
-    content: '▸'; color: var(--accent2); font-size: 0.7rem;
-  }
-
-  /* PROJECTS */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem;
-  }
+ 
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-text p { color: var(--muted); line-height: 1.9; font-size: 0.9rem; margin-bottom: 1rem; }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .skill-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.8rem; color: var(--muted); }
+  .skill-item::before { content: '▸'; color: var(--accent2); font-size: 0.7rem; }
+ 
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
   .project-card {
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 2rem;
     transition: border-color 0.25s, transform 0.25s;
-    position: relative;
-    overflow: hidden;
+    position: relative; overflow: hidden;
   }
   .project-card::before {
     content: '';
-    position: absolute; top: 0; left: 0; right: 0;
-    height: 2px;
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
     background: linear-gradient(90deg, var(--accent), var(--accent2));
-    opacity: 0;
-    transition: opacity 0.25s;
+    opacity: 0; transition: opacity 0.25s;
   }
   .project-card:hover { border-color: rgba(123,110,246,0.3); transform: translateY(-4px); }
   .project-card:hover::before { opacity: 1; }
-  .project-num {
-    font-size: 0.7rem; color: var(--accent);
-    letter-spacing: 0.1em; margin-bottom: 1rem;
-  }
-  .project-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700; font-size: 1.2rem;
-    margin-bottom: 0.75rem;
-    letter-spacing: -0.02em;
-  }
-  .project-desc {
-    color: var(--muted); font-size: 0.82rem;
-    line-height: 1.8; margin-bottom: 1.5rem;
-  }
+  .project-num { font-size: 0.7rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 1rem; }
+  .project-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
+  .project-desc { color: var(--muted); font-size: 0.82rem; line-height: 1.8; margin-bottom: 1.5rem; }
   .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
-  .tag {
-    font-size: 0.7rem; letter-spacing: 0.08em;
-    padding: 0.25rem 0.6rem;
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    color: var(--muted);
-  }
+  .tag { font-size: 0.7rem; letter-spacing: 0.08em; padding: 0.25rem 0.6rem; border: 1px solid var(--border); border-radius: 3px; color: var(--muted); }
   .project-links { display: flex; gap: 1rem; }
-  .project-link {
-    font-size: 0.75rem; color: var(--muted);
-    text-decoration: none; letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
+  .project-link { font-size: 0.75rem; color: var(--muted); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
   .project-link:hover { color: var(--accent); }
-
-  /* EXPERIENCE */
+ 
   .exp-list { display: flex; flex-direction: column; gap: 0; }
-  .exp-item {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 2rem;
-    padding: 2rem 0;
-    border-bottom: 1px solid var(--border);
-    align-items: start;
-  }
+  .exp-item { display: grid; grid-template-columns: 200px 1fr; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--border); align-items: start; }
   .exp-item:first-child { border-top: 1px solid var(--border); }
   .exp-date { font-size: 0.78rem; color: var(--muted); padding-top: 0.25rem; }
-  .exp-role {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700; font-size: 1.05rem;
-    margin-bottom: 0.25rem;
-    letter-spacing: -0.02em;
-  }
+  .exp-role { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.25rem; letter-spacing: -0.02em; }
   .exp-company { color: var(--accent2); font-size: 0.82rem; margin-bottom: 0.75rem; }
   .exp-desc { color: var(--muted); font-size: 0.83rem; line-height: 1.8; }
-
-  /* CONTACT */
-  .contact-inner {
-    max-width: 600px;
-  }
-  .contact-inner p {
-    color: var(--muted); font-size: 0.9rem;
-    line-height: 1.8; margin-bottom: 2rem;
-  }
-  .social-links {
-    display: flex; gap: 2rem; flex-wrap: wrap;
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border);
-  }
-  .social-link {
-    font-size: 0.78rem; letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted); text-decoration: none;
-    transition: color 0.2s;
-  }
+  .exp-bullets { color: var(--muted); font-size: 0.83rem; line-height: 1.8; list-style: none; padding: 0; }
+  .exp-bullets li { padding: 0.2rem 0; }
+  .exp-bullets li::before { content: '▸ '; color: var(--accent2); }
+ 
+  .contact-inner { max-width: 600px; }
+  .contact-inner p { color: var(--muted); font-size: 0.9rem; line-height: 1.8; margin-bottom: 2rem; }
+  .social-links { display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+  .social-link { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
   .social-link:hover { color: var(--accent); }
-
-  /* FOOTER */
-  footer {
-    padding: 2rem 4rem;
-    border-top: 1px solid var(--border);
-    display: flex; justify-content: space-between;
-    align-items: center;
-    font-size: 0.75rem; color: var(--muted);
-  }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+ 
+  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--muted); }
+ 
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
   .hero-tag { animation: fadeUp 0.6s ease both 0.1s; }
   .hero h1 { animation: fadeUp 0.7s ease both 0.2s; }
   .hero-desc { animation: fadeUp 0.7s ease both 0.35s; }
   .hero-cta { animation: fadeUp 0.7s ease both 0.5s; }
-
+ 
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { display: none; }
@@ -301,10 +199,9 @@
 </style>
 </head>
 <body>
-
-<!-- NAV -->
+ 
 <nav>
-  <a href="#" class="nav-logo">YN.</a>
+  <a href="#" class="nav-logo">AZ.</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Projects</a></li>
@@ -312,202 +209,163 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
-
-<!-- HERO -->
+ 
 <section class="hero" id="home">
-  <p class="hero-tag">// Available for opportunities</p>
-  <h1>Building things<br>for the <span>web.</span></h1>
+  <p class="hero-tag">// Open to full-time opportunities</p>
+  <h1>Fullstack<br><span>developer.</span></h1>
   <p class="hero-desc">
-    I'm Your Name, a full-stack developer specializing in building exceptional
-    digital experiences. Currently focused on building accessible, human-centered
-    products.
+    I'm Amari Zakaria, a fullstack web developer based in Algiers, Algeria.
+    Fresh graduate with real production experience building web and mobile
+    applications. I build things that work, scale, and look good doing it.
   </p>
   <div class="hero-cta">
-    <a href="#projects" class="btn btn-primary">View my work</a>
+    <a href="#projects" class="btn btn-primary">See my projects</a>
     <a href="#contact" class="btn btn-outline">Get in touch</a>
   </div>
   <span class="hero-scroll">Scroll to explore</span>
 </section>
-
-<!-- ABOUT -->
+ 
 <section id="about">
   <p class="section-label">// 01. about</p>
   <h2 class="section-title">Who I am</h2>
   <div class="about-grid">
     <div class="about-text">
       <p>
-        Hello! I'm Your Name, a developer based in Your City with a passion for
-        creating things that live on the internet. I enjoy building software that
-        is elegant, fast, and accessible to everyone.
+        Hi! I'm Zakaria, a fullstack developer from Algiers. I recently graduated
+        from INSEP NTIC Rahmania with a score of 18.5/20, and I've already had
+        the chance to build real production software during my internship.
       </p>
       <p>
-        I've had the privilege of working at a startup, a large corporation, and
-        as a freelancer. My main focus these days is building products and leading
-        projects at Your Company.
+        I spent a year at Univer Cosmetic developing a full CRM system from scratch —
+        web and mobile — using Laravel, MySQL, and Flutter. It was used in production,
+        which meant real stakes, real users, and real lessons.
       </p>
       <p>
-        Outside of work, I contribute to open-source projects, write on my blog,
-        and experiment with new technologies.
+        I'm now looking for a full-time role where I can keep building impactful
+        software and grow as an engineer.
       </p>
     </div>
     <div>
       <p class="section-label" style="margin-bottom: 1.25rem;">Technologies I work with</p>
       <div class="skills-grid">
-        <span class="skill-item">JavaScript (ES6+)</span>
-        <span class="skill-item">TypeScript</span>
-        <span class="skill-item">React / Next.js</span>
-        <span class="skill-item">Node.js</span>
-        <span class="skill-item">Python</span>
-        <span class="skill-item">PostgreSQL</span>
-        <span class="skill-item">Docker / K8s</span>
-        <span class="skill-item">AWS / GCP</span>
-        <span class="skill-item">GraphQL</span>
+        <span class="skill-item">HTML / CSS / JS</span>
+        <span class="skill-item">PHP & Laravel</span>
+        <span class="skill-item">React</span>
+        <span class="skill-item">MySQL</span>
+        <span class="skill-item">Flutter</span>
+        <span class="skill-item">Dart</span>
+        <span class="skill-item">Kotlin</span>
         <span class="skill-item">REST APIs</span>
-        <span class="skill-item">Git / CI/CD</span>
-        <span class="skill-item">Linux / Bash</span>
+        <span class="skill-item">Auth & RBAC</span>
+        <span class="skill-item">Git</span>
       </div>
     </div>
   </div>
 </section>
-
-<!-- PROJECTS -->
+ 
 <section id="projects">
   <p class="section-label">// 02. projects</p>
   <h2 class="section-title">Things I've built</h2>
   <div class="projects-grid">
-
+ 
     <div class="project-card">
       <p class="project-num">01</p>
-      <h3 class="project-title">Project Alpha</h3>
+      <h3 class="project-title">CRM System — Univer Cosmetic</h3>
       <p class="project-desc">
-        A full-stack web application that does something amazing. Built with
-        performance in mind and designed to scale to millions of users.
+        A full CRM system built for real internal use at Univer Cosmetic. Includes
+        dashboards, reports, authentication, role-based access control, and full
+        CRUD operations. Delivered on time as part of a small team.
       </p>
       <div class="project-tags">
-        <span class="tag">Next.js</span>
-        <span class="tag">TypeScript</span>
-        <span class="tag">PostgreSQL</span>
-        <span class="tag">AWS</span>
+        <span class="tag">Laravel</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">Flutter</span>
+        <span class="tag">RBAC</span>
+        <span class="tag">Web + Mobile</span>
       </div>
       <div class="project-links">
-        <a href="#" class="project-link">GitHub ↗</a>
-        <a href="#" class="project-link">Live demo ↗</a>
+        <span class="project-link" style="cursor:default; opacity:0.5;">Private repo</span>
       </div>
     </div>
-
+ 
     <div class="project-card">
       <p class="project-num">02</p>
-      <h3 class="project-title">Project Beta</h3>
+      <h3 class="project-title">Dynamic Digital Display System</h3>
       <p class="project-desc">
-        An open-source developer tool that simplifies the workflow for teams.
-        Used by 1,000+ developers globally with 500+ GitHub stars.
+        A system for managing and displaying dynamic content across connected
+        digital screens. Content is updated periodically through a web-based
+        admin interface built with PHP, Laravel, and MySQL.
       </p>
       <div class="project-tags">
-        <span class="tag">Node.js</span>
-        <span class="tag">CLI</span>
-        <span class="tag">Open Source</span>
+        <span class="tag">PHP</span>
+        <span class="tag">Laravel</span>
+        <span class="tag">MySQL</span>
       </div>
       <div class="project-links">
-        <a href="#" class="project-link">GitHub ↗</a>
-        <a href="#" class="project-link">npm ↗</a>
+        <a href="https://github.com/zachlethal/digital-signange-system" target="_blank" class="project-link">GitHub ↗</a>
       </div>
     </div>
-
-    <div class="project-card">
-      <p class="project-num">03</p>
-      <h3 class="project-title">Project Gamma</h3>
-      <p class="project-desc">
-        A real-time data dashboard with live updates, complex visualizations,
-        and role-based access control for enterprise teams.
-      </p>
-      <div class="project-tags">
-        <span class="tag">React</span>
-        <span class="tag">D3.js</span>
-        <span class="tag">WebSockets</span>
-        <span class="tag">Redis</span>
-      </div>
-      <div class="project-links">
-        <a href="#" class="project-link">GitHub ↗</a>
-        <a href="#" class="project-link">Live demo ↗</a>
-      </div>
-    </div>
-
+ 
   </div>
 </section>
-
-<!-- EXPERIENCE -->
+ 
 <section id="experience">
   <p class="section-label">// 03. experience</p>
-  <h2 class="section-title">Where I've worked</h2>
+  <h2 class="section-title">Where I've been</h2>
   <div class="exp-list">
-
+ 
     <div class="exp-item">
-      <span class="exp-date">2023 — Present</span>
+      <span class="exp-date">2024 — 2025</span>
       <div>
-        <p class="exp-role">Senior Software Engineer</p>
-        <p class="exp-company">Your Current Company</p>
+        <p class="exp-role">CRM Development Intern</p>
+        <p class="exp-company">Univer Cosmetic — Algiers, Algeria</p>
+        <ul class="exp-bullets">
+          <li>Developed a full CRM system (web + mobile) using Laravel and MySQL for real production use</li>
+          <li>Designed a structured database with proper CRUD operations, improving data accuracy</li>
+          <li>Implemented authentication and role-based access control, enhancing security</li>
+          <li>Built dashboards and reports for real-time data analysis and decision-making</li>
+          <li>Delivered the project on time in a small team with good quality</li>
+        </ul>
+      </div>
+    </div>
+ 
+    <div class="exp-item">
+      <span class="exp-date">2022 — 2025</span>
+      <div>
+        <p class="exp-role">Fullstack Web Development</p>
+        <p class="exp-company">INSEP NTIC Rahmania — Algiers, Algeria</p>
         <p class="exp-desc">
-          Led development of the core platform, mentored junior engineers, and
-          drove adoption of TypeScript across the engineering org. Reduced API
-          response times by 40% through query optimization and caching strategies.
+          Graduated with a score of 18.5/20. Studied web development, databases,
+          mobile development, software architecture, and system design. Final project:
+          CRM system deployed in a real company environment.
         </p>
       </div>
     </div>
-
-    <div class="exp-item">
-      <span class="exp-date">2021 — 2023</span>
-      <div>
-        <p class="exp-role">Software Engineer</p>
-        <p class="exp-company">Previous Company</p>
-        <p class="exp-desc">
-          Built and maintained microservices handling 50M+ requests/day. Shipped
-          key features for the consumer product used by 2M+ users. Introduced
-          end-to-end testing that cut production bugs by 60%.
-        </p>
-      </div>
-    </div>
-
-    <div class="exp-item">
-      <span class="exp-date">2019 — 2021</span>
-      <div>
-        <p class="exp-role">Junior Developer</p>
-        <p class="exp-company">First Company / Freelance</p>
-        <p class="exp-desc">
-          Developed client websites and internal tools. Worked across the full stack
-          on a variety of projects ranging from e-commerce platforms to internal
-          dashboards.
-        </p>
-      </div>
-    </div>
-
+ 
   </div>
 </section>
-
-<!-- CONTACT -->
+ 
 <section id="contact">
   <p class="section-label">// 04. contact</p>
   <h2 class="section-title">Get in touch</h2>
   <div class="contact-inner">
     <p>
-      I'm currently open to new opportunities. Whether you have a project in mind,
-      a question, or just want to say hello — feel free to reach out and I'll do
-      my best to get back to you.
+      I'm actively looking for my first full-time role as a fullstack developer.
+      If you think I'd be a good fit for your team, or just want to have a chat,
+      feel free to reach out.
     </p>
-    <a href="mailto:your@email.com" class="btn btn-primary">Say hello ↗</a>
+    <a href="mailto:zach16.dz@gmail.com" class="btn btn-primary">Say hello ↗</a>
     <div class="social-links">
-      <a href="#" class="social-link">GitHub</a>
-      <a href="#" class="social-link">LinkedIn</a>
-      <a href="#" class="social-link">Twitter / X</a>
-      <a href="#" class="social-link">Resume (PDF)</a>
+      <a href="https://github.com/zachlethal" target="_blank" class="social-link">GitHub</a>
+      <a href="mailto:zach16.dz@gmail.com" class="social-link">Email</a>
     </div>
   </div>
 </section>
-
-<!-- FOOTER -->
+ 
 <footer>
-  <span>Designed & built by Your Name</span>
+  <span>Designed & built by Amari Zakaria</span>
   <span>© 2026</span>
 </footer>
-
+ 
 </body>
 </html>
