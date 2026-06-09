@@ -58,7 +58,7 @@ body[data-theme="light"] header {
 
 nav {
   display: flex; align-items: center; justify-content: space-between;
-  gap: 6rem; width: 100%;
+  gap: 0; width: 100%; position: relative;
 }
 
 .nav-logo {
@@ -68,9 +68,10 @@ nav {
   text-decoration: none;
   letter-spacing: -0.03em;
   white-space: nowrap;
+  flex: 0 0 auto;
 }
 
-.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; position: absolute; left: 50%; transform: translateX(-50%); }
 .nav-links a {
   color: var(--muted); text-decoration: none;
   font-size: 0.8rem; letter-spacing: 0.08em;
