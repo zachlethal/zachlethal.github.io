@@ -58,7 +58,7 @@ body[data-theme="light"] header {
 
 nav {
   display: flex; align-items: center; justify-content: space-between;
-  gap: 3rem; width: 100%;
+  gap: 6rem; width: 100%;
 }
 
 .nav-logo {
