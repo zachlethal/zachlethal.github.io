@@ -5,367 +5,388 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Amari Zakaria — Fullstack Developer</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
-<style>
-  :root {
-    --bg: #0a0a0f;
-    --surface: #13131a;
-    --border: rgba(255,255,255,0.07);
-    --accent: #7b6ef6;
-    --accent2: #3ecfb2;
-    --text: #e8e8f0;
-    --muted: #7a7a96;
-    --card-bg: #16161f;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'DM Mono', monospace;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
- 
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.25rem 4rem;
-    background: rgba(10,10,15,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800; font-size: 1.1rem;
-    color: var(--accent);
-    text-decoration: none;
-    letter-spacing: -0.03em;
-  }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a {
-    color: var(--muted); text-decoration: none;
-    font-size: 0.8rem; letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--text); }
- 
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 0 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; top: -30%; right: -10%;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(123,110,246,0.12) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero::after {
-    content: '';
-    position: absolute; bottom: -10%; left: 20%;
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(62,207,178,0.07) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-tag {
-    font-size: 0.75rem; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--accent2);
-    margin-bottom: 1.5rem;
-  }
-  .hero h1 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: clamp(3rem, 7vw, 6rem);
-    line-height: 1.0;
-    letter-spacing: -0.04em;
-    margin-bottom: 1.5rem;
-    max-width: 900px;
-  }
-  .hero h1 span { color: var(--accent); }
-  .hero-desc {
-    color: var(--muted);
-    font-size: 0.95rem;
-    line-height: 1.8;
-    max-width: 520px;
-    margin-bottom: 2.5rem;
-  }
-  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn {
-    display: inline-block;
-    padding: 0.75rem 1.75rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.8rem; letter-spacing: 0.05em;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: all 0.2s;
-    cursor: pointer;
-  }
-  .btn-primary { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
-  .btn-primary:hover { background: #6a5de8; border-color: #6a5de8; }
-  .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
-  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-  .hero-scroll {
-    position: absolute; bottom: 2.5rem; left: 4rem;
-    font-size: 0.7rem; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--muted);
-    display: flex; align-items: center; gap: 0.75rem;
-  }
-  .hero-scroll::before { content: ''; display: block; width: 40px; height: 1px; background: var(--muted); }
- 
-  section { padding: 6rem 4rem; }
-  .section-label {
-    font-size: 0.7rem; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--accent);
-    margin-bottom: 1rem;
-  }
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    letter-spacing: -0.03em;
-    margin-bottom: 3rem;
-  }
- 
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-  .about-text p { color: var(--muted); line-height: 1.9; font-size: 0.9rem; margin-bottom: 1rem; }
-  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-  .skill-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.8rem; color: var(--muted); }
-  .skill-item::before { content: '▸'; color: var(--accent2); font-size: 0.7rem; }
- 
-  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
-  .project-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 2rem;
-    transition: border-color 0.25s, transform 0.25s;
-    position: relative; overflow: hidden;
-  }
-  .project-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    opacity: 0; transition: opacity 0.25s;
-  }
-  .project-card:hover { border-color: rgba(123,110,246,0.3); transform: translateY(-4px); }
-  .project-card:hover::before { opacity: 1; }
-  .project-num { font-size: 0.7rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 1rem; }
-  .project-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
-  .project-desc { color: var(--muted); font-size: 0.82rem; line-height: 1.8; margin-bottom: 1.5rem; }
-  .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
-  .tag { font-size: 0.7rem; letter-spacing: 0.08em; padding: 0.25rem 0.6rem; border: 1px solid var(--border); border-radius: 3px; color: var(--muted); }
-  .project-links { display: flex; gap: 1rem; }
-  .project-link { font-size: 0.75rem; color: var(--muted); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
-  .project-link:hover { color: var(--accent); }
- 
-  .exp-list { display: flex; flex-direction: column; gap: 0; }
-  .exp-item { display: grid; grid-template-columns: 200px 1fr; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--border); align-items: start; }
-  .exp-item:first-child { border-top: 1px solid var(--border); }
-  .exp-date { font-size: 0.78rem; color: var(--muted); padding-top: 0.25rem; }
-  .exp-role { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.25rem; letter-spacing: -0.02em; }
-  .exp-company { color: var(--accent2); font-size: 0.82rem; margin-bottom: 0.75rem; }
-  .exp-desc { color: var(--muted); font-size: 0.83rem; line-height: 1.8; }
-  .exp-bullets { color: var(--muted); font-size: 0.83rem; line-height: 1.8; list-style: none; padding: 0; }
-  .exp-bullets li { padding: 0.2rem 0; }
-  .exp-bullets li::before { content: '▸ '; color: var(--accent2); }
- 
-  .contact-inner { max-width: 600px; }
-  .contact-inner p { color: var(--muted); font-size: 0.9rem; line-height: 1.8; margin-bottom: 2rem; }
-  .social-links { display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
-  .social-link { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-  .social-link:hover { color: var(--accent); }
- 
-  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--muted); }
- 
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-  .hero-tag { animation: fadeUp 0.6s ease both 0.1s; }
-  .hero h1 { animation: fadeUp 0.7s ease both 0.2s; }
-  .hero-desc { animation: fadeUp 0.7s ease both 0.35s; }
-  .hero-cta { animation: fadeUp 0.7s ease both 0.5s; }
- 
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
-    .hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
-    .hero-scroll { left: 1.5rem; }
-    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
-    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-theme="dark" lang="en">
  
-<nav>
-  <a href="#" class="nav-logo">AZ.</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
- 
-<section class="hero" id="home">
-  <p class="hero-tag">// Open to full-time opportunities</p>
-  <h1>Fullstack<br><span>developer.</span></h1>
-  <p class="hero-desc">
-    I'm Amari Zakaria, a fullstack web developer based in Algiers, Algeria.
-    Fresh graduate with real production experience building web and mobile
-    applications. I build things that work, scale, and look good doing it.
-  </p>
-  <div class="hero-cta">
-    <a href="#projects" class="btn btn-primary">See my projects</a>
-    <a href="#contact" class="btn btn-outline">Get in touch</a>
+<header>
+  <nav>
+    <a href="#" class="nav-logo">AZ.</a>
+    <ul class="nav-links">
+      <li><a href="#about" data-i18n="nav-about">About</a></li>
+      <li><a href="#projects" data-i18n="nav-projects">Projects</a></li>
+      <li><a href="#experience" data-i18n="nav-experience">Experience</a></li>
+      <li><a href="#contact" data-i18n="nav-contact">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="controls">
+    <div class="control-group">
+      <select class="lang-select" id="langSelect">
+        <option value="en">EN</option>
+        <option value="fr">FR</option>
+        <option value="ar">AR</option>
+      </select>
+    </div>
+    <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌙</button>
   </div>
-  <span class="hero-scroll">Scroll to explore</span>
-</section>
+</header>
  
-<section id="about">
-  <p class="section-label">// 01. about</p>
-  <h2 class="section-title">Who I am</h2>
-  <div class="about-grid">
-    <div class="about-text">
-      <p>
-        Hi! I'm Zakaria, a fullstack developer from Algiers. I recently graduated
-        from INSEP NTIC Rahmania with a score of 18.5/20, and I've already had
-        the chance to build real production software during my internship.
-      </p>
-      <p>
-        I spent a year at Univer Cosmetic developing a full CRM system from scratch —
-        web and mobile — using Laravel, MySQL, and Flutter. It was used in production,
-        which meant real stakes, real users, and real lessons.
-      </p>
-      <p>
-        I'm now looking for a full-time role where I can keep building impactful
-        software and grow as an engineer.
-      </p>
+<main>
+  <section class="hero" id="home">
+    <p class="hero-tag" data-i18n="hero-tag">// Open to full-time opportunities</p>
+    <h1><span data-i18n="hero-fullstack">Fullstack</span><br><span data-i18n="hero-developer">developer.</span></h1>
+    <p class="hero-desc" data-i18n="hero-desc">
+      I'm Amari Zakaria, a fullstack web developer based in Algiers, Algeria.
+      Fresh graduate with real production experience building web and mobile
+      applications. I build things that work, scale, and look good doing it.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary" data-i18n="hero-cta-projects">See my projects</a>
+      <a href="#contact" class="btn btn-outline" data-i18n="hero-cta-contact">Get in touch</a>
     </div>
-    <div>
-      <p class="section-label" style="margin-bottom: 1.25rem;">Technologies I work with</p>
-      <div class="skills-grid">
-        <span class="skill-item">HTML / CSS / JS</span>
-        <span class="skill-item">PHP & Laravel</span>
-        <span class="skill-item">React</span>
-        <span class="skill-item">MySQL</span>
-        <span class="skill-item">Flutter</span>
-        <span class="skill-item">Dart</span>
-        <span class="skill-item">Kotlin</span>
-        <span class="skill-item">REST APIs</span>
-        <span class="skill-item">Auth & RBAC</span>
-        <span class="skill-item">Git</span>
-      </div>
-    </div>
-  </div>
-</section>
+    <span class="hero-scroll" data-i18n="hero-scroll">Scroll to explore</span>
+  </section>
  
-<section id="projects">
-  <p class="section-label">// 02. projects</p>
-  <h2 class="section-title">Things I've built</h2>
-  <div class="projects-grid">
- 
-    <div class="project-card">
-      <p class="project-num">01</p>
-      <h3 class="project-title">CRM System — Univer Cosmetic</h3>
-      <p class="project-desc">
-        A full CRM system built for real internal use at Univer Cosmetic. Includes
-        dashboards, reports, authentication, role-based access control, and full
-        CRUD operations. Delivered on time as part of a small team.
-      </p>
-      <div class="project-tags">
-        <span class="tag">Laravel</span>
-        <span class="tag">MySQL</span>
-        <span class="tag">Flutter</span>
-        <span class="tag">RBAC</span>
-        <span class="tag">Web + Mobile</span>
-      </div>
-      <div class="project-links">
-        <span class="project-link" style="cursor:default; opacity:0.5;">Private repo</span>
-      </div>
-    </div>
- 
-    <div class="project-card">
-      <p class="project-num">02</p>
-      <h3 class="project-title">Dynamic Digital Display System</h3>
-      <p class="project-desc">
-        A system for managing and displaying dynamic content across connected
-        digital screens. Content is updated periodically through a web-based
-        admin interface built with PHP, Laravel, and MySQL.
-      </p>
-      <div class="project-tags">
-        <span class="tag">PHP</span>
-        <span class="tag">Laravel</span>
-        <span class="tag">MySQL</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/zachlethal/digital-signange-system" target="_blank" class="project-link">GitHub ↗</a>
-      </div>
-    </div>
- 
-  </div>
-</section>
- 
-<section id="experience">
-  <p class="section-label">// 03. experience</p>
-  <h2 class="section-title">Where I've been</h2>
-  <div class="exp-list">
- 
-    <div class="exp-item">
-      <span class="exp-date">2024 — 2025</span>
-      <div>
-        <p class="exp-role">CRM Development Intern</p>
-        <p class="exp-company">Univer Cosmetic — Algiers, Algeria</p>
-        <ul class="exp-bullets">
-          <li>Developed a full CRM system (web + mobile) using Laravel and MySQL for real production use</li>
-          <li>Designed a structured database with proper CRUD operations, improving data accuracy</li>
-          <li>Implemented authentication and role-based access control, enhancing security</li>
-          <li>Built dashboards and reports for real-time data analysis and decision-making</li>
-          <li>Delivered the project on time in a small team with good quality</li>
-        </ul>
-      </div>
-    </div>
- 
-    <div class="exp-item">
-      <span class="exp-date">2022 — 2025</span>
-      <div>
-        <p class="exp-role">Fullstack Web Development</p>
-        <p class="exp-company">INSEP NTIC Rahmania — Algiers, Algeria</p>
-        <p class="exp-desc">
-          Graduated with a score of 18.5/20. Studied web development, databases,
-          mobile development, software architecture, and system design. Final project:
-          CRM system deployed in a real company environment.
+  <section id="about">
+    <p class="section-label" data-i18n="section-about">// 01. about</p>
+    <h2 class="section-title" data-i18n="about-title">Who I am</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p data-i18n="about-p1">
+          Hi! I'm Amari Zakaria, a fullstack developer from Algiers. I recently graduated
+          from INSEP NTIC Rahmania with distinction, and I've already had
+          the chance to build real production software during my internship.
+        </p>
+        <p data-i18n="about-p2">
+          I spent a year at Univer Cosmetic developing a full CRM system from scratch —
+          web and mobile — using Laravel, MySQL, and Flutter. It was used in production,
+          which meant real stakes, real users, and real lessons.
+        </p>
+        <p data-i18n="about-p3">
+          I'm now looking for a full-time role where I can keep building impactful
+          software and grow as an engineer.
         </p>
       </div>
+      <div>
+        <p class="section-label" style="margin-bottom: 1.25rem;" data-i18n="skills-label">Technologies I work with</p>
+        <div class="skills-grid">
+          <span class="skill-item">HTML / CSS / JS</span>
+          <span class="skill-item">PHP & Laravel</span>
+          <span class="skill-item">React</span>
+          <span class="skill-item">MySQL</span>
+          <span class="skill-item">Flutter</span>
+          <span class="skill-item">Dart</span>
+          <span class="skill-item">Kotlin</span>
+          <span class="skill-item">REST APIs</span>
+          <span class="skill-item">Auth & RBAC</span>
+          <span class="skill-item">Git</span>
+        </div>
+      </div>
     </div>
+  </section>
  
-  </div>
-</section>
+  <section id="projects">
+    <p class="section-label" data-i18n="section-projects">// 02. projects</p>
+    <h2 class="section-title" data-i18n="projects-title">Things I've built</h2>
+    <div class="projects-grid">
  
-<section id="contact">
-  <p class="section-label">// 04. contact</p>
-  <h2 class="section-title">Get in touch</h2>
-  <div class="contact-inner">
-    <p>
-      I'm actively looking for my first full-time role as a fullstack developer.
-      If you think I'd be a good fit for your team, or just want to have a chat,
-      feel free to reach out.
-    </p>
-    <a href="mailto:zach16.dz@gmail.com" class="btn btn-primary">Say hello ↗</a>
-    <div class="social-links">
-      <a href="https://github.com/zachlethal" target="_blank" class="social-link">GitHub</a>
-      <a href="mailto:zach16.dz@gmail.com" class="social-link">Email</a>
+      <div class="project-card">
+        <p class="project-num">01</p>
+        <h3 class="project-title" data-i18n="project1-title">CRM System — Univer Cosmetic</h3>
+        <p class="project-desc" data-i18n="project1-desc">
+          A full CRM system built for real internal use at Univer Cosmetic. Includes
+          dashboards, reports, authentication, role-based access control, and full
+          CRUD operations. Delivered on time as part of a small team.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Laravel</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">Flutter</span>
+          <span class="tag">RBAC</span>
+          <span class="tag" data-i18n="tag-web-mobile">Web + Mobile</span>
+        </div>
+        <div class="project-links">
+          <span class="project-link" style="cursor:default; opacity:0.5;" data-i18n="private-repo">Private repo</span>
+        </div>
+      </div>
+ 
+      <div class="project-card">
+        <p class="project-num">02</p>
+        <h3 class="project-title" data-i18n="project2-title">Dynamic Digital Display System</h3>
+        <p class="project-desc" data-i18n="project2-desc">
+          A system for managing and displaying dynamic content across connected
+          digital screens. Content is updated periodically through a web-based
+          admin interface built with PHP, Laravel, and MySQL.
+        </p>
+        <div class="project-tags">
+          <span class="tag">PHP</span>
+          <span class="tag">Laravel</span>
+          <span class="tag">MySQL</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/zachlethal/digital-signange-system" target="_blank" class="project-link">GitHub ↗</a>
+        </div>
+      </div>
+ 
     </div>
-  </div>
-</section>
+  </section>
+ 
+  <section id="experience">
+    <p class="section-label" data-i18n="section-experience">// 03. experience</p>
+    <h2 class="section-title" data-i18n="experience-title">Where I've been</h2>
+    <div class="exp-list">
+ 
+      <div class="exp-item">
+        <span class="exp-date">2024 — 2025</span>
+        <div>
+          <p class="exp-role" data-i18n="exp1-role">CRM Development Intern</p>
+          <p class="exp-company" data-i18n="exp1-company">Univer Cosmetic — Algiers, Algeria</p>
+          <ul class="exp-bullets">
+            <li data-i18n="exp1-b1">Developed a full CRM system (web + mobile) using Laravel and MySQL for real production use</li>
+            <li data-i18n="exp1-b2">Designed a structured database with proper CRUD operations, improving data accuracy</li>
+            <li data-i18n="exp1-b3">Implemented authentication and role-based access control, enhancing security</li>
+            <li data-i18n="exp1-b4">Built dashboards and reports for real-time data analysis and decision-making</li>
+            <li data-i18n="exp1-b5">Delivered the project on time in a small team with good quality</li>
+          </ul>
+        </div>
+      </div>
+ 
+      <div class="exp-item">
+        <span class="exp-date">2022 — 2025</span>
+        <div>
+          <p class="exp-role" data-i18n="exp2-role">Fullstack Web Development</p>
+          <p class="exp-company" data-i18n="exp2-company">INSEP NTIC Rahmania — Algiers, Algeria</p>
+          <p class="exp-desc" data-i18n="exp2-desc">
+            Graduated with distinction. Studied web development, databases,
+            mobile development, software architecture, and system design. Final project:
+            CRM system deployed in a real company environment.
+          </p>
+        </div>
+      </div>
+ 
+    </div>
+  </section>
+ 
+  <section id="contact">
+    <p class="section-label" data-i18n="section-contact">// 04. contact</p>
+    <h2 class="section-title" data-i18n="contact-title">Get in touch</h2>
+    <div class="contact-inner">
+      <p data-i18n="contact-desc">
+        I'm actively looking for my first full-time role as a fullstack developer.
+        If you think I'd be a good fit for your team, or just want to have a chat,
+        feel free to reach out.
+      </p>
+      <a href="mailto:zach16.dz@gmail.com" class="btn btn-primary" data-i18n="contact-cta">Say hello ↗</a>
+      <div class="social-links">
+        <a href="https://github.com/zachlethal" target="_blank" class="social-link">GitHub</a>
+        <a href="mailto:zach16.dz@gmail.com" class="social-link" data-i18n="email-link">Email</a>
+      </div>
+    </div>
+  </section>
+</main>
  
 <footer>
-  <span>Designed & built by Amari Zakaria</span>
+  <span data-i18n="footer-credit">Designed & built by Amari Zakaria</span>
   <span>© 2026</span>
 </footer>
- 
+
+<script>
+  // Translation data
+  const translations = {
+    en: {
+      "nav-about": "About",
+      "nav-projects": "Projects",
+      "nav-experience": "Experience",
+      "nav-contact": "Contact",
+      "hero-tag": "// Open to full-time opportunities",
+      "hero-fullstack": "Fullstack",
+      "hero-developer": "developer.",
+      "hero-desc": "I'm Amari Zakaria, a fullstack web developer based in Algiers, Algeria. Fresh graduate with real production experience building web and mobile applications. I build things that work, scale, and look good doing it.",
+      "hero-cta-projects": "See my projects",
+      "hero-cta-contact": "Get in touch",
+      "hero-scroll": "Scroll to explore",
+      "section-about": "// 01. about",
+      "about-title": "Who I am",
+      "about-p1": "Hi! I'm Amari Zakaria, a fullstack developer from Algiers. I recently graduated from INSEP NTIC Rahmania with distinction, and I've already had the chance to build real production software during my internship.",
+      "about-p2": "I spent a year at Univer Cosmetic developing a full CRM system from scratch — web and mobile — using Laravel, MySQL, and Flutter. It was used in production, which meant real stakes, real users, and real lessons.",
+      "about-p3": "I'm now looking for a full-time role where I can keep building impactful software and grow as an engineer.",
+      "skills-label": "Technologies I work with",
+      "section-projects": "// 02. projects",
+      "projects-title": "Things I've built",
+      "project1-title": "CRM System — Univer Cosmetic",
+      "project1-desc": "A full CRM system built for real internal use at Univer Cosmetic. Includes dashboards, reports, authentication, role-based access control, and full CRUD operations. Delivered on time as part of a small team.",
+      "project2-title": "Dynamic Digital Display System",
+      "project2-desc": "A system for managing and displaying dynamic content across connected digital screens. Content is updated periodically through a web-based admin interface built with PHP, Laravel, and MySQL.",
+      "tag-web-mobile": "Web + Mobile",
+      "private-repo": "Private repo",
+      "section-experience": "// 03. experience",
+      "experience-title": "Where I've been",
+      "exp1-role": "CRM Development Intern",
+      "exp1-company": "Univer Cosmetic — Algiers, Algeria",
+      "exp1-b1": "Developed a full CRM system (web + mobile) using Laravel and MySQL for real production use",
+      "exp1-b2": "Designed a structured database with proper CRUD operations, improving data accuracy",
+      "exp1-b3": "Implemented authentication and role-based access control, enhancing security",
+      "exp1-b4": "Built dashboards and reports for real-time data analysis and decision-making",
+      "exp1-b5": "Delivered the project on time in a small team with good quality",
+      "exp2-role": "Fullstack Web Development",
+      "exp2-company": "INSEP NTIC Rahmania — Algiers, Algeria",
+      "exp2-desc": "Graduated with distinction. Studied web development, databases, mobile development, software architecture, and system design. Final project: CRM system deployed in a real company environment.",
+      "section-contact": "// 04. contact",
+      "contact-title": "Get in touch",
+      "contact-desc": "I'm actively looking for my first full-time role as a fullstack developer. If you think I'd be a good fit for your team, or just want to have a chat, feel free to reach out.",
+      "contact-cta": "Say hello ↗",
+      "email-link": "Email",
+      "footer-credit": "Designed & built by Amari Zakaria"
+    },
+    fr: {
+      "nav-about": "À propos",
+      "nav-projects": "Projets",
+      "nav-experience": "Expérience",
+      "nav-contact": "Contact",
+      "hero-tag": "// Ouvert aux opportunités en CDI",
+      "hero-fullstack": "Développeur",
+      "hero-developer": "fullstack.",
+      "hero-desc": "Je suis Amari Zakaria, développeur web fullstack basé à Alger, en Algérie. Récent diplômé ayant une vraie expérience en production développant des applications web et mobiles. Je construis des choses qui fonctionnent, qui passent à l'échelle et qui ont une belle apparence.",
+      "hero-cta-projects": "Voir mes projets",
+      "hero-cta-contact": "Me contacter",
+      "hero-scroll": "Faites défiler pour explorer",
+      "section-about": "// 01. à propos",
+      "about-title": "Qui je suis",
+      "about-p1": "Salut ! Je suis Amari Zakaria, développeur fullstack d'Alger. J'ai récemment obtenu mon diplôme d'INSEP NTIC Rahmania avec distinction, et j'ai déjà eu la chance de développer du vrai logiciel en production lors de mon stage.",
+      "about-p2": "J'ai passé un an chez Univer Cosmetic à développer un système CRM complet à partir de zéro — web et mobile — en utilisant Laravel, MySQL et Flutter. Il a été utilisé en production, ce qui signifiait des vrais enjeux, de vrais utilisateurs et de vraies leçons.",
+      "about-p3": "Je suis maintenant à la recherche d'un rôle en CDI où je pourrai continuer à construire des logiciels impactants et me développer en tant qu'ingénieur.",
+      "skills-label": "Technologies avec lesquelles je travaille",
+      "section-projects": "// 02. projets",
+      "projects-title": "Ce que j'ai créé",
+      "project1-title": "Système CRM — Univer Cosmetic",
+      "project1-desc": "Un système CRM complet construit pour une utilisation interne réelle chez Univer Cosmetic. Inclut des tableaux de bord, des rapports, l'authentification, le contrôle d'accès basé sur les rôles et les opérations CRUD complètes. Livré à temps en équipe restreinte.",
+      "project2-title": "Système d'affichage numérique dynamique",
+      "project2-desc": "Un système pour gérer et afficher du contenu dynamique sur plusieurs écrans numériques connectés. Le contenu est mis à jour périodiquement via une interface d'administration web construite avec PHP, Laravel et MySQL.",
+      "tag-web-mobile": "Web + Mobile",
+      "private-repo": "Repo privé",
+      "section-experience": "// 03. expérience",
+      "experience-title": "Où j'ai travaillé",
+      "exp1-role": "Stagiaire Développeur CRM",
+      "exp1-company": "Univer Cosmetic — Alger, Algérie",
+      "exp1-b1": "Développé un système CRM complet (web + mobile) utilisant Laravel et MySQL pour une utilisation réelle en production",
+      "exp1-b2": "Conçu une base de données structurée avec des opérations CRUD appropriées, améliorant la précision des données",
+      "exp1-b3": "Implémenté l'authentification et le contrôle d'accès basé sur les rôles, renforçant la sécurité",
+      "exp1-b4": "Construit des tableaux de bord et des rapports pour l'analyse de données en temps réel et la prise de décision",
+      "exp1-b5": "Livré le projet à temps en équipe restreinte avec bonne qualité",
+      "exp2-role": "Développement Web Fullstack",
+      "exp2-company": "INSEP NTIC Rahmania — Alger, Algérie",
+      "exp2-desc": "Diplômé avec distinction. Études en développement web, bases de données, développement mobile, architecture logicielle et design système. Projet final: système CRM déployé dans un environnement d'entreprise réel.",
+      "section-contact": "// 04. contact",
+      "contact-title": "Prenons contact",
+      "contact-desc": "Je suis activement à la recherche de mon premier rôle en CDI en tant que développeur fullstack. Si vous pensez que je serais un bon élément pour votre équipe, ou si vous voulez simplement discuter, n'hésitez pas à me contacter.",
+      "contact-cta": "Dites bonjour ↗",
+      "email-link": "Email",
+      "footer-credit": "Conçu et créé par Amari Zakaria"
+    },
+    ar: {
+      "nav-about": "نبذة عني",
+      "nav-projects": "المشاريع",
+      "nav-experience": "الخبرة",
+      "nav-contact": "تواصل معي",
+      "hero-tag": "// مفتوح للعمل بدوام كامل",
+      "hero-fullstack": "مطور",
+      "hero-developer": "الويب والجوال.",
+      "hero-desc": "أنا عماري زكرياء، مطور ويب الويب والجوال مقيم في الجزائر. خريج حديث مع خبرة حقيقية في الإنتاج في بناء تطبيقات الويب والجوال. أبني أشياء تعمل وتتسع وتبدو جميلة.",
+      "hero-cta-projects": "شاهد مشاريعي",
+      "hero-cta-contact": "تواصل معي",
+      "hero-scroll": "مرر لاستكشاف المزيد",
+      "section-about": "// 01. نبذة عني",
+      "about-title": "من أنا",
+      "about-p1": "مرحبا! أنا عماري زكرياء، مطور الويب والجوال من الجزائر. تخرجت مؤخراً من INSEP NTIC الرحمانية بتميز، وقد أتيحت لي الفرصة بالفعل لبناء برامج حقيقية في الإنتاج خلال التدريب الداخلي.",
+      "about-p2": "قضيت سنة واحدة في Univer Cosmetic بتطوير نظام CRM كامل من الصفر - ويب وجوال - باستخدام Laravel و MySQL و Flutter. تم استخدامه في الإنتاج، مما يعني مخاطر حقيقية وعملاء حقيقيون ودروس حقيقية.",
+      "about-p3": "أبحث الآن عن دور بدوام كامل حيث يمكنني الاستمرار في بناء برامج مؤثرة والنمو كمهندس.",
+      "skills-label": "التقنيات التي أعمل بها",
+      "section-projects": "// 02. المشاريع",
+      "projects-title": "ما بنيته",
+      "project1-title": "نظام CRM — Univer Cosmetic",
+      "project1-desc": "نظام CRM كامل تم بناؤه للاستخدام الداخلي الحقيقي في Univer Cosmetic. يتضمن لوحات معلومات وتقارير والمصادقة والتحكم في الوصول القائم على الأدوار وعمليات CRUD الكاملة. تم تسليمه في الوقت المناسب كجزء من فريق صغير.",
+      "project2-title": "نظام العرض الرقمي الديناميكي",
+      "project2-desc": "نظام لإدارة وعرض محتوى ديناميكي عبر شاشات رقمية متصلة. يتم تحديث المحتوى بشكل دوري من خلال واجهة إدارة ويب مدمجة بـ PHP و Laravel و MySQL.",
+      "tag-web-mobile": "ويب + جوال",
+      "private-repo": "مستودع خاص",
+      "section-experience": "// 03. الخبرة",
+      "experience-title": "حيث عملت",
+      "exp1-role": "متدرب تطوير CRM",
+      "exp1-company": "Univer Cosmetic — الجزائر",
+      "exp1-b1": "تطوير نظام CRM كامل (ويب + جوال) باستخدام Laravel و MySQL للاستخدام الحقيقي في الإنتاج",
+      "exp1-b2": "تصميم قاعدة بيانات منظمة مع عمليات CRUD مناسبة، مما يحسن دقة البيانات",
+      "exp1-b3": "تنفيذ المصادقة والتحكم في الوصول القائم على الأدوار، مما يعزز الأمان",
+      "exp1-b4": "بناء لوحات معلومات وتقارير لتحليل البيانات في الوقت الفعلي واتخاذ القرارات",
+      "exp1-b5": "تسليم المشروع في الوقت المناسب كفريق صغير بجودة عالية",
+      "exp2-role": "تطوير ويب كامل",
+      "exp2-company": "INSEP NTIC الرحمانية — الجزائر",
+      "exp2-desc": "تخرج بتميز. درست تطوير الويب وقواعد البيانات والتطوير المحمول وعمارة البرامج وتصميم النظام. المشروع النهائي: نظام CRM تم نشره في بيئة إنتاج حقيقية.",
+      "section-contact": "// 04. تواصل معي",
+      "contact-title": "تواصل معي",
+      "contact-desc": "أبحث بنشاط عن أول دور بدوام كامل كمطور ويب كامل. إذا كنت تعتقد أنني سأكون إضافة جيدة لفريقك، أو كنت تريد مجرد محادثة، فلا تتردد في التواصل.",
+      "contact-cta": "قل مرحبا ↗",
+      "email-link": "بريد إلكتروني",
+      "footer-credit": "صُمم وبُني بواسطة عماري زكرياء"
+    }
+  };
+
+  // Language switcher
+  const langSelect = document.getElementById('langSelect');
+  const body = document.body;
+  const html = document.documentElement;
+
+  function setLanguage(lang) {
+    body.lang = lang;
+    html.lang = lang;
+    localStorage.setItem('language', lang);
+    langSelect.value = lang;
+    updateTranslations(lang);
+  }
+
+  function updateTranslations(lang) {
+    const trans = translations[lang];
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+      const key = element.getAttribute('data-i18n');
+      if (trans[key]) {
+        element.textContent = trans[key];
+      }
+    });
+  }
+
+  langSelect.addEventListener('change', (e) => {
+    setLanguage(e.target.value);
+  });
+
+  // Theme switcher
+  const themeToggle = document.getElementById('themeToggle');
+  
+  function setTheme(theme) {
+    body.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+  }
+
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = body.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+  });
+
+  // Initialize from localStorage
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    const savedLang = localStorage.getItem('language') || 'en';
+    
+    setTheme(savedTheme);
+    setLanguage(savedLang);
+  });
+
+  // Also initialize on load
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  const savedLang = localStorage.getItem('language') || 'en';
+  setTheme(savedTheme);
+  setLanguage(savedLang);
+</script>
 </body>
 </html>
